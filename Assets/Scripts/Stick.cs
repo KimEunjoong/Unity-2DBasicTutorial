@@ -23,6 +23,7 @@ public class Stick : MonoBehaviour
 
 	void Update()
 	{
+        ProcessMouseInput();
 		ProcessKeyInput();
 	}
 	#endregion
@@ -41,6 +42,21 @@ public class Stick : MonoBehaviour
 			m_IsGrowing = false;
 		}
 	}
+
+    private void ProcessMouseInput()
+    {
+        if ( Input.GetMouseButton( 0 ) == true )
+        {
+            m_IsGrowing = true;
+
+            Grow();
+        }
+            
+        if ( Input.GetMouseButtonUp( 0 ) == true )
+        {
+            m_IsGrowing = false;
+        }
+    }
 
 	private void Grow()
 	{

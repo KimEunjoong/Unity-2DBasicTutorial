@@ -18,12 +18,28 @@ public class Background : MonoBehaviour
     #endregion
 
     #region MonoBehaviour
-    private void Start()
+    
+    private void Update()
     {
+        ProcessMouseInput();
+        ProcessKeyInput();
+    }
+    #endregion
 
+    private void ProcessMouseInput()
+    {
+        if ( Input.GetMouseButton( 0 ) == true )
+        {
+
+        }
+
+        if ( Input.GetMouseButtonUp( 0 ) == true )
+        {
+
+        }
     }
 
-    private void Update()
+    private void ProcessKeyInput()
     {
         m_IsScrolling = false;
 
@@ -41,7 +57,6 @@ public class Background : MonoBehaviour
 
         Scroll();
     }
-    #endregion
 
     /// <summary>
     /// do scroll

@@ -37,15 +37,64 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        ProcessKey();
+        ProcessMouseInput();
+        ProcessKeyInput();
     }
     #endregion
 
+    /// <summary>
+    /// 초기화
+    /// </summary>
     private void Init()
     {
         m_State = PlayerState.Idle;
         m_LookDirection = Direction.Right;
     }
+
+    private void ProcessKeyInput()
+    {
+        if ( Input.GetKey( KeyCode.RightArrow ) == true )
+        {
+            m_LookDirection = Direction.Right;
+            m_Renderer.flipX = false;
+
+            ChangeAnimation( PlayerState.Move );
+        }
+
+        if ( Input.GetKeyUp( KeyCode.RightArrow ) == true )
+        {
+            ChangeAnimation( PlayerState.Idle );
+        }
+
+
+        if ( Input.GetKey( KeyCode.LeftArrow ) == true )
+        {
+            m_LookDirection = Direction.Left;
+            m_Renderer.flipX = true;
+
+            ChangeAnimation( PlayerState.Move );
+        }
+
+        if ( Input.GetKeyUp( KeyCode.LeftArrow ) == true )
+        {
+            ChangeAnimation( PlayerState.Idle );
+        }
+    }
+
+    private void ProcessMouseInput()
+    {
+        if ( Input.GetMouseButton( 0 ) == true )
+        {
+
+        }
+
+        if ( Input.GetMouseButtonUp( 0 ) == true )
+        {
+
+        }
+    }
+
+    
 
     private void ChangeAnimation( PlayerState _state )
     {
@@ -74,34 +123,5 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void ProcessKey()
-    {
-
-        if ( Input.GetKey( KeyCode.RightArrow ) == true )
-        {
-            m_LookDirection = Direction.Right;
-            m_Renderer.flipX = false;
-
-            ChangeAnimation( PlayerState.Move );
-        }
-
-        if ( Input.GetKeyUp( KeyCode.RightArrow ) == true )
-        {
-            ChangeAnimation( PlayerState.Idle );
-        }
-
-
-        if ( Input.GetKey( KeyCode.LeftArrow ) == true )
-        {
-            m_LookDirection = Direction.Left;
-            m_Renderer.flipX = true;
-
-            ChangeAnimation( PlayerState.Move );
-        }
-
-        if ( Input.GetKeyUp( KeyCode.LeftArrow ) == true )
-        {
-            ChangeAnimation( PlayerState.Idle );
-        }
-    }
+    
 }
