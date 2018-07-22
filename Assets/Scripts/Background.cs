@@ -41,21 +41,7 @@ public class Background : MonoBehaviour
 
     private void ProcessKeyInput()
     {
-        m_IsScrolling = false;
-
-        if ( Input.GetKey( KeyCode.RightArrow ) == true )
-        {
-            m_IsScrolling = true;
-            m_ScrollDirection = Direction.Right;
-        }
-
-        if ( Input.GetKey( KeyCode.LeftArrow ) == true )
-        {
-            m_IsScrolling = true;
-            m_ScrollDirection = Direction.Left;
-        }
-
-        Scroll();
+        
     }
 
     /// <summary>

@@ -30,17 +30,7 @@ public class Stick : MonoBehaviour
 
 	private void ProcessKeyInput()
 	{
-		if ( Input.GetKey( KeyCode.UpArrow ) == true )
-		{
-			m_IsGrowing = true;
-
-			Grow();
-		}
-
-		if ( Input.GetKeyUp( KeyCode.UpArrow ) == true )
-		{
-			m_IsGrowing = false;
-		}
+		
 	}
 
     private void ProcessMouseInput()
@@ -49,21 +39,34 @@ public class Stick : MonoBehaviour
         {
             m_IsGrowing = true;
 
-            Grow();
+            GrowUp();
         }
             
         if ( Input.GetMouseButtonUp( 0 ) == true )
         {
             m_IsGrowing = false;
+
+            FallRight();
         }
     }
 
-	private void Grow()
+    /// <summary>
+    /// 
+    /// </summary>
+	private void GrowUp()
 	{
 		if ( m_IsGrowing == false ) return;
 
 		m_Height += m_GrowSpeed * Time.deltaTime;
-		transform.localScale = new Vector3( 10f, m_Height, 1f );
+        Vector3 scale = transform.localScale;
+		transform.localScale = new Vector3( scale.x, m_Height, scale.z );
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
+    private void FallRight()
+    {
+
+    }
 }

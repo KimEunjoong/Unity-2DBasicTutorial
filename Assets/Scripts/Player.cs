@@ -53,32 +53,7 @@ public class Player : MonoBehaviour
 
     private void ProcessKeyInput()
     {
-        if ( Input.GetKey( KeyCode.RightArrow ) == true )
-        {
-            m_LookDirection = Direction.Right;
-            m_Renderer.flipX = false;
-
-            ChangeAnimation( PlayerState.Move );
-        }
-
-        if ( Input.GetKeyUp( KeyCode.RightArrow ) == true )
-        {
-            ChangeAnimation( PlayerState.Idle );
-        }
-
-
-        if ( Input.GetKey( KeyCode.LeftArrow ) == true )
-        {
-            m_LookDirection = Direction.Left;
-            m_Renderer.flipX = true;
-
-            ChangeAnimation( PlayerState.Move );
-        }
-
-        if ( Input.GetKeyUp( KeyCode.LeftArrow ) == true )
-        {
-            ChangeAnimation( PlayerState.Idle );
-        }
+        
     }
 
     private void ProcessMouseInput()
