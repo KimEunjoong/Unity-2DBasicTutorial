@@ -6,47 +6,82 @@ public class Stick : MonoBehaviour
 {
 	#region Properties
 	[SerializeField]
-	private float m_Height = 0;
-
-	[SerializeField]
-	private bool m_IsGrowing = false;
-
+	private float m_Height = 0;	
 	[SerializeField]
 	private float m_GrowSpeed = 1f;
+    [SerializeField]
+    private float m_FallSpeed = 1f;
+    private Transform m_Transform;
 	#endregion
 
-	#region MonoBehaviour
-	void Awake()
-	{
+    public enum StickState
+    {
+        Idle = 0,
+        Growing,
+        Falling,
+        Reached
+    }
 
+    private StickState m_State;
+
+    #region MonoBehaviour
+    void Awake()
+	{
+        m_Transform = transform;
+
+        m_State = StickState.Idle;
 	}
 
 	void Update()
 	{
-        ProcessMouseInput();
-		ProcessKeyInput();
-	}
-	#endregion
+        switch (m_State)
+        {
+            case StickState.Idle:
+                ProcessMouseInput();                
+                break;
+            case StickState.Growing:
+                ProcessMouseInput();
+                GrowUp();
+                break;
+            case StickState.Falling:
+                FallRight();
+                break;
+            case StickState.Reached:
+                break;
+            default:
+                break;
+        }
+    }
 
-	private void ProcessKeyInput()
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.tag.Equals("Tile") == true)
+        {
+            m_State = StickState.Reached;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+    }
+    #endregion
+
+    private void ProcessKeyInput()
 	{
 		
 	}
 
     private void ProcessMouseInput()
     {
-        if ( Input.GetMouseButton( 0 ) == true )
+        if ( Input.GetMouseButtonDown( 0 ) == true )
         {
-            m_IsGrowing = true;
-
-            GrowUp();
+            m_State = StickState.Growing;
         }
             
         if ( Input.GetMouseButtonUp( 0 ) == true )
         {
-            m_IsGrowing = false;
-
-            FallRight();
+            m_State = StickState.Falling;
         }
     }
 
@@ -55,11 +90,11 @@ public class Stick : MonoBehaviour
     /// </summary>
 	private void GrowUp()
 	{
-		if ( m_IsGrowing == false ) return;
+        if (m_State != StickState.Growing) return;
 
 		m_Height += m_GrowSpeed * Time.deltaTime;
         Vector3 scale = transform.localScale;
-		transform.localScale = new Vector3( scale.x, m_Height, scale.z );
+        m_Transform.localScale = new Vector3( scale.x, m_Height, scale.z );
 	}
 
     /// <summary>
@@ -67,6 +102,8 @@ public class Stick : MonoBehaviour
     /// </summary>
     private void FallRight()
     {
+        if (m_State != StickState.Falling) return;
 
+        m_Transform.Rotate(Vector3.back, m_FallSpeed * Time.deltaTime);
     }
 }
