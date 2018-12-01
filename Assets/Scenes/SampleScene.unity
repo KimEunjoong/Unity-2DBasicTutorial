@@ -123,9 +123,9 @@ GameObject:
   - component: {fileID: 41102102}
   - component: {fileID: 41102101}
   - component: {fileID: 41102100}
-  - component: {fileID: 41102099}
   - component: {fileID: 41102104}
   - component: {fileID: 41102103}
+  - component: {fileID: 41102099}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210c860eca37d3447861fab7a8a041e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_MoveSpeed: 1
 --- !u!95 &41102100
 Animator:
   serializedVersion: 3

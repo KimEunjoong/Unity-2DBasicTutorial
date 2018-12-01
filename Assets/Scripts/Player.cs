@@ -24,6 +24,9 @@ public class Player : MonoBehaviour
 
     private PlayerState m_State = PlayerState.Idle;
     private Direction m_LookDirection = Direction.Right;
+    private Transform m_Transform;
+    [SerializeField]
+    private float m_MoveSpeed = 1.0f;
     #endregion
 
     #region MonoBehaviour
@@ -31,6 +34,7 @@ public class Player : MonoBehaviour
     {
         m_Animator = this.GetComponent<Animator>();
         m_Renderer = this.GetComponent<SpriteRenderer>();
+        m_Transform = transform;
 
         Init();
     }
@@ -60,16 +64,14 @@ public class Player : MonoBehaviour
     {
         if ( Input.GetMouseButton( 0 ) == true )
         {
-
+            //MoveX();
         }
 
         if ( Input.GetMouseButtonUp( 0 ) == true )
         {
-
+            
         }
     }
-
-    
 
     private void ChangeAnimation( PlayerState _state )
     {
@@ -98,5 +100,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    
+    private void MoveX()
+    {
+        float x = m_Transform.position.x + m_MoveSpeed * Time.deltaTime;
+        Vector3 newPosition = new Vector3(x, m_Transform.position.y, m_Transform.position.z);
+        m_Transform.position = newPosition;
+    }
 }
