@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 타일 크기가 모두 다르다.
 public class Tile : MonoBehaviour
 {
-    #region Properties
-    private Stick m_Stick;
+    #region Properties    
     #endregion
 
     #region MonoBehaviour
     private void Awake()
     {
-        m_Stick = transform.Find( "Sprite_Stick" ).GetComponent<Stick>();
     }
 
     private void Update()
@@ -22,9 +21,6 @@ public class Tile : MonoBehaviour
 
     private void ProcessMouseInput()
     {
-        if ( Input.GetMouseButtonDown( 0 ) == true )
-        {
-            m_Stick.gameObject.SetActive( true );
-        }
+
     }
 }

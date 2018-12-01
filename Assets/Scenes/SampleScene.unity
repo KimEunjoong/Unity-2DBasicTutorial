@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 41102104}
   - component: {fileID: 41102103}
   m_Layer: 0
-  m_Name: Sprite_Player
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -313,7 +313,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4032946636582944, guid: 2d9e07a0738ddbc429aff84223b08d26, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.4
+      value: -3.42
       objectReference: {fileID: 0}
     - target: {fileID: 4032946636582944, guid: 2d9e07a0738ddbc429aff84223b08d26, type: 2}
       propertyPath: m_LocalPosition.z
@@ -364,7 +364,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4032946636582944, guid: 2d9e07a0738ddbc429aff84223b08d26, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.4
+      value: -3.42
       objectReference: {fileID: 0}
     - target: {fileID: 4032946636582944, guid: 2d9e07a0738ddbc429aff84223b08d26, type: 2}
       propertyPath: m_LocalPosition.z
@@ -412,6 +412,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -426,6 +427,18 @@ AudioListener:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3844bc6a9f3b6948b55ed024b3fd64f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Player: {fileID: 41102099}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -568,6 +581,81 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ScrollSpeed: 1
+--- !u!1 &681376880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 681376882}
+  - component: {fileID: 681376881}
+  m_Layer: 0
+  m_Name: Stick
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &681376881
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 681376880}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1081431353
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: e0aa0004be9557d43a89efba918b5e62, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.01, y: 0.01}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &681376882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 681376880}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.682, y: -1.415, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &887789559
 Prefab:
   m_ObjectHideFlags: 0
@@ -581,7 +669,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4032946636582944, guid: 2d9e07a0738ddbc429aff84223b08d26, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.4
+      value: -3.42
       objectReference: {fileID: 0}
     - target: {fileID: 4032946636582944, guid: 2d9e07a0738ddbc429aff84223b08d26, type: 2}
       propertyPath: m_LocalPosition.z
@@ -619,12 +707,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4032946636582944, guid: 2d9e07a0738ddbc429aff84223b08d26,
     type: 2}
   m_PrefabInternal: {fileID: 887789559}
---- !u!4 &1322372649 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4032946636582944, guid: 2d9e07a0738ddbc429aff84223b08d26,
-    type: 2}
-  m_PrefabInternal: {fileID: 1407632500}
---- !u!1001 &1407632500
+--- !u!1001 &1072893952
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -637,7 +720,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4032946636582944, guid: 2d9e07a0738ddbc429aff84223b08d26, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.4
+      value: -3.42
       objectReference: {fileID: 0}
     - target: {fileID: 4032946636582944, guid: 2d9e07a0738ddbc429aff84223b08d26, type: 2}
       propertyPath: m_LocalPosition.z
@@ -666,6 +749,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d9e07a0738ddbc429aff84223b08d26, type: 2}
   m_IsPrefabAsset: 0
+--- !u!4 &1322372649 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4032946636582944, guid: 2d9e07a0738ddbc429aff84223b08d26,
+    type: 2}
+  m_PrefabInternal: {fileID: 1072893952}
 --- !u!1001 &1493791917
 Prefab:
   m_ObjectHideFlags: 0
@@ -679,7 +767,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4032946636582944, guid: 2d9e07a0738ddbc429aff84223b08d26, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.4
+      value: -3.42
       objectReference: {fileID: 0}
     - target: {fileID: 4032946636582944, guid: 2d9e07a0738ddbc429aff84223b08d26, type: 2}
       propertyPath: m_LocalPosition.z
@@ -730,7 +818,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4032946636582944, guid: 2d9e07a0738ddbc429aff84223b08d26, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.4
+      value: -3.42
       objectReference: {fileID: 0}
     - target: {fileID: 4032946636582944, guid: 2d9e07a0738ddbc429aff84223b08d26, type: 2}
       propertyPath: m_LocalPosition.z
