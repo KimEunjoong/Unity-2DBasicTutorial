@@ -8,36 +8,37 @@ public class Stick : MonoBehaviour
 	[SerializeField]
 	private float m_Height = 0;	
 	[SerializeField]
-	private float m_GrowSpeed = 1f;
+	private float m_GrowSpeed = 0.1f;
     [SerializeField]
     private float m_FallSpeed = 1f;
     private Transform m_Transform;
+    private Rigidbody2D m_Rigidbody;
 	#endregion
 
     public enum StickState
     {
-        Idle = 0,
+        Grounded = 0,
         Growing,
-        Falling,
-        Reached
+        Falling        
     }
 
-    private StickState m_State;
+    public StickState m_State;
 
     #region MonoBehaviour
     void Awake()
 	{
         m_Transform = transform;
+        m_Rigidbody = transform.GetComponent<Rigidbody2D>();
 
-        m_State = StickState.Idle;
+        m_State = StickState.Grounded;
 	}
 
-	void Update()
-	{
+    private void FixedUpdate()
+    {
         switch (m_State)
         {
-            case StickState.Idle:
-                ProcessMouseInput();                
+            case StickState.Grounded:
+                ProcessMouseInput();
                 break;
             case StickState.Growing:
                 ProcessMouseInput();
@@ -46,8 +47,6 @@ public class Stick : MonoBehaviour
             case StickState.Falling:
                 FallRight();
                 break;
-            case StickState.Reached:
-                break;
             default:
                 break;
         }
@@ -55,15 +54,15 @@ public class Stick : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag.Equals("Tile") == true)
-        {
-            m_State = StickState.Reached;
-        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.transform.tag.Equals("Tile") == true)
+        {
+            m_State = StickState.Grounded;
+        }
     }
     #endregion
 
@@ -105,5 +104,6 @@ public class Stick : MonoBehaviour
         if (m_State != StickState.Falling) return;
 
         m_Transform.Rotate(Vector3.back, m_FallSpeed * Time.deltaTime);
+        //m_Rigidbody.AddForce(Vector3.right * m_FallSpeed );
     }
 }
