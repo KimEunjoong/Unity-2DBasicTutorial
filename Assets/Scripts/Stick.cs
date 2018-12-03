@@ -13,6 +13,8 @@ public class Stick : MonoBehaviour
     private float m_FallSpeed = 1f;
     private Transform m_Transform;
     private Rigidbody2D m_Rigidbody;
+
+    public Player m_Player = null;
 	#endregion
 
     public enum StickState
@@ -104,6 +106,5 @@ public class Stick : MonoBehaviour
         if (m_State != StickState.Falling) return;
 
         m_Transform.Rotate(Vector3.back, m_FallSpeed * Time.deltaTime);
-        //m_Rigidbody.AddForce(Vector3.right * m_FallSpeed );
     }
 }

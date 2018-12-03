@@ -11,9 +11,7 @@ public enum Direction
 public enum PlayerState
 {
     Idle = 0,
-    Move,
-    PullStick,
-    PushStick
+    Move
 }
 
 public class Player : MonoBehaviour
@@ -41,8 +39,16 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        ProcessMouseInput();
-        ProcessKeyInput();
+        switch (m_State)
+        {
+            case PlayerState.Idle:
+                break;
+            case PlayerState.Move:
+                MoveX();
+                break;
+            default:
+                break;
+        }
     }
     #endregion
 
@@ -55,24 +61,6 @@ public class Player : MonoBehaviour
         m_LookDirection = Direction.Right;
     }
 
-    private void ProcessKeyInput()
-    {
-        
-    }
-
-    private void ProcessMouseInput()
-    {
-        if ( Input.GetMouseButton( 0 ) == true )
-        {
-            //MoveX();
-        }
-
-        if ( Input.GetMouseButtonUp( 0 ) == true )
-        {
-            
-        }
-    }
-
     private void ChangeAnimation( PlayerState _state )
     {
         if ( m_State == _state ) return;
@@ -82,22 +70,19 @@ public class Player : MonoBehaviour
         switch( m_State )
         {
             case PlayerState.Idle:
-            m_Animator.SetBool( "move", false );
-            break;
-
+                m_Animator.SetBool( "move", false );
+                break;
             case PlayerState.Move:
-            m_Animator.SetBool( "move", true );
-            break;
-
-            case PlayerState.PullStick:
-            break;
-
-            case PlayerState.PushStick:
-            break;
-
+                m_Animator.SetBool( "move", true );
+                break;
             default:
-            break;
+                break;
         }
+    }
+
+    public void BeginMove()
+    {
+        m_State = PlayerState.Move;
     }
 
     private void MoveX()
