@@ -1024,16 +1024,6 @@ Prefab:
       propertyPath: m_Name
       value: Tile_0
       objectReference: {fileID: 0}
-    - target: {fileID: 61317921771070898, guid: 2d9e07a0738ddbc429aff84223b08d26,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 61317921771070898, guid: 2d9e07a0738ddbc429aff84223b08d26,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d9e07a0738ddbc429aff84223b08d26, type: 2}
   m_IsPrefabAsset: 0
