@@ -23,13 +23,13 @@ public class Tile : MonoBehaviour
     {
         if ( collision.transform.tag.Equals("Stick") == true )
         {
-            // 막대기가 현재 위치하고 있는 타일이 그 다음 타일이 아니라 타일이 원래 위치했던 곳이라면 패스
-            if ( collision.transform.GetComponent<Stick>().m_CurrentTileID == m_ID )
-            {
-                return;
-            }
+            //// 막대기가 현재 위치하고 있는 타일이 그 다음 타일이 아니라 타일이 원래 위치했던 곳이라면 패스
+            //if ( collision.transform.GetComponent<Stick>().m_CurrentTileID == m_ID )
+            //{
+            //    return;
+            //}
 
-            Player.instance.m_State = Player.State.Move;
+            //Player.instance.m_State = Player.State.Move;
         }
     }
 }

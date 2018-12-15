@@ -67,11 +67,13 @@ public class Stick : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.transform.tag.Equals("Tile") == true)
-        //{
-        //    m_State = State.Grounded;
-        //    //m_State = StickState.Landed;
-        //}
+        if (collision.transform.tag.Equals("Tile") == true)
+        {
+            if ( collision.transform.GetComponent<Tile>().m_ID != m_ID)
+            {
+                m_State = State.Landed;
+            }
+        }
     }
     #endregion
 
@@ -112,8 +114,7 @@ public class Stick : MonoBehaviour
     {
         if (m_State != State.Falling) return;
 
-        //m_Transform.Rotate(Vector3.back, m_FallSpeed * Time.deltaTime);
-        m_Transform.Rotate(Vector3.back, m_FallSpeed * Time.deltaTime, Space.World);
+        m_Transform.Rotate(Vector3.back, m_FallSpeed * Time.deltaTime);
 
     }
 }

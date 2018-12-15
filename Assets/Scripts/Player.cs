@@ -89,12 +89,7 @@ public class Player : BaseSingleton<Player>
                 break;
         }
     }
-
-    public void BeginMove()
-    {
-        m_State = State.Move;
-    }
-
+    
     private void MoveX()
     {
         float x = m_Transform.position.x + m_MoveSpeed * Time.deltaTime;
