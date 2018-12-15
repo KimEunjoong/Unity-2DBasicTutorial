@@ -7,23 +7,18 @@ using WanzyeeStudio;
 
 public class Player : BaseSingleton<Player>
 {
-    public enum Direction
-    {
-        Left = 0,
-        Right
-    }
-
-    public enum PlayerState
+    public enum State
     {
         Idle = 0,
         Move
     }
 
-    #region Properties
+    #region Properties    
+    public int m_CurrentTileID = 0;
     private Animator m_Animator;
     private SpriteRenderer m_Renderer;
 
-    public PlayerState m_State = PlayerState.Idle;
+    public State m_State = State.Idle;
     private Direction m_LookDirection = Direction.Right;
     private Transform m_Transform;
     [SerializeField]
@@ -44,13 +39,25 @@ public class Player : BaseSingleton<Player>
     {
         switch (m_State)
         {
-            case PlayerState.Idle:
+            case State.Idle:
                 break;
-            case PlayerState.Move:
+            case State.Move:
                 MoveX();
                 break;
             default:
                 break;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag.Equals("Stick") == true)
+        {
+            // 캐릭터가 이동하다가 끝자락에 위치한 막대기에 걸리면 플레이어 멈추고 idle 상태
+            if (collision.transform.GetComponent<Stick>().m_ID == m_CurrentTileID)
+            {
+                m_State = State.Idle;
+            }
         }
     }
     #endregion
@@ -60,11 +67,11 @@ public class Player : BaseSingleton<Player>
     /// </summary>
     private void Init()
     {
-        m_State = PlayerState.Idle;
+        m_State = State.Idle;
         m_LookDirection = Direction.Right;
     }
 
-    private void ChangeAnimation( PlayerState _state )
+    private void ChangeAnimation( State _state )
     {
         if ( m_State == _state ) return;
 
@@ -72,10 +79,10 @@ public class Player : BaseSingleton<Player>
 
         switch( m_State )
         {
-            case PlayerState.Idle:
+            case State.Idle:
                 m_Animator.SetBool( "move", false );
                 break;
-            case PlayerState.Move:
+            case State.Move:
                 m_Animator.SetBool( "move", true );
                 break;
             default:
@@ -85,7 +92,7 @@ public class Player : BaseSingleton<Player>
 
     public void BeginMove()
     {
-        m_State = PlayerState.Move;
+        m_State = State.Move;
     }
 
     private void MoveX()

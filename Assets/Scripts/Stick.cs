@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Stick : MonoBehaviour 
 {
-    public enum StickState
+    public enum State
     {
         Grounded = 0,
         Growing,
@@ -13,16 +13,18 @@ public class Stick : MonoBehaviour
     }
 
     #region Properties
+    public int m_ID = 0;
     [SerializeField]
 	private float m_Height = 0;	
 	[SerializeField]
-	private float m_GrowSpeed = 0.1f;
+	private float m_GrowSpeed = 10f;
     [SerializeField]
-    private float m_FallSpeed = 1f;
+    private float m_FallSpeed = 100f;
     private Transform m_Transform;
     private Rigidbody2D m_Rigidbody;
-    
-    public StickState m_State;
+
+    public int m_CurrentTileID = 0;   // 막대기가 위치해 있는 현재 타일의 ID
+    public State m_State;
     #endregion
 
     #region MonoBehaviour
@@ -31,26 +33,26 @@ public class Stick : MonoBehaviour
         m_Transform = transform;
         m_Rigidbody = transform.GetComponent<Rigidbody2D>();
 
-        m_State = StickState.Grounded;
+        m_State = State.Grounded;
 	}
 
     private void FixedUpdate()
     {
         switch (m_State)
         {
-            case StickState.Grounded:
+            case State.Grounded:
                 ProcessMouseInput();
                 break;
-            case StickState.Growing:
+            case State.Growing:
                 ProcessMouseInput();
                 GrowUp();
                 break;
-            case StickState.Falling:
+            case State.Falling:
                 FallRight();
                 break;
-            case StickState.Landed:
+            case State.Landed:
                 {
-                    Player.instance.m_State = PlayerState.Move;
+                    Player.instance.m_State = Player.State.Move;
                 }
                 break;
             default:
@@ -65,11 +67,11 @@ public class Stick : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag.Equals("Tile") == true)
-        {
-            m_State = StickState.Grounded;
-            //m_State = StickState.Landed;
-        }
+        //if (collision.transform.tag.Equals("Tile") == true)
+        //{
+        //    m_State = State.Grounded;
+        //    //m_State = StickState.Landed;
+        //}
     }
     #endregion
 
@@ -82,12 +84,12 @@ public class Stick : MonoBehaviour
     {
         if ( Input.GetMouseButtonDown( 0 ) == true )
         {
-            m_State = StickState.Growing;
+            m_State = State.Growing;
         }
             
         if ( Input.GetMouseButtonUp( 0 ) == true )
         {
-            m_State = StickState.Falling;
+            m_State = State.Falling;
         }
     }
 
@@ -96,7 +98,7 @@ public class Stick : MonoBehaviour
     /// </summary>
 	private void GrowUp()
 	{
-        if (m_State != StickState.Growing) return;
+        if (m_State != State.Growing) return;
 
 		m_Height += m_GrowSpeed * Time.deltaTime;
         Vector3 scale = transform.localScale;
@@ -108,8 +110,10 @@ public class Stick : MonoBehaviour
     /// </summary>
     private void FallRight()
     {
-        if (m_State != StickState.Falling) return;
+        if (m_State != State.Falling) return;
 
-        m_Transform.Rotate(Vector3.back, m_FallSpeed * Time.deltaTime);
+        //m_Transform.Rotate(Vector3.back, m_FallSpeed * Time.deltaTime);
+        m_Transform.Rotate(Vector3.back, m_FallSpeed * Time.deltaTime, Space.World);
+
     }
 }
