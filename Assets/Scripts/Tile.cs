@@ -15,12 +15,14 @@ public class Tile : MonoBehaviour
 
     private void Update()
     {
-        ProcessMouseInput();
     }
     #endregion
 
-    private void ProcessMouseInput()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-
+        if ( collision.transform.tag.Equals("Stick") == true )
+        {
+            Player.instance.m_State = PlayerState.Idle;
+        }
     }
 }

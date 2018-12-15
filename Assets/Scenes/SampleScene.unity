@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 41102099}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210c860eca37d3447861fab7a8a041e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_State: 0
   m_MoveSpeed: 1
 --- !u!95 &41102100
 Animator:
@@ -663,7 +664,7 @@ GameObject:
   - component: {fileID: 681376884}
   m_Layer: 0
   m_Name: Stick
-  m_TagString: Untagged
+  m_TagString: Stick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -766,6 +767,7 @@ MonoBehaviour:
   m_Height: 0
   m_GrowSpeed: 100
   m_FallSpeed: 100
+  m_Player: {fileID: 0}
   m_State: 0
 --- !u!50 &681376885
 Rigidbody2D:

@@ -1,26 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WanzyeeStudio;
 
-public enum Direction
-{
-    Left = 0,
-    Right
-}
 
-public enum PlayerState
-{
-    Idle = 0,
-    Move
-}
 
-public class Player : MonoBehaviour
+public class Player : BaseSingleton<Player>
 {
+    public enum Direction
+    {
+        Left = 0,
+        Right
+    }
+
+    public enum PlayerState
+    {
+        Idle = 0,
+        Move
+    }
+
     #region Properties
     private Animator m_Animator;
     private SpriteRenderer m_Renderer;
 
-    private PlayerState m_State = PlayerState.Idle;
+    public PlayerState m_State = PlayerState.Idle;
     private Direction m_LookDirection = Direction.Right;
     private Transform m_Transform;
     [SerializeField]
@@ -28,7 +31,7 @@ public class Player : MonoBehaviour
     #endregion
 
     #region MonoBehaviour
-    private void Awake()
+    protected override void Awake()
     {
         m_Animator = this.GetComponent<Animator>();
         m_Renderer = this.GetComponent<SpriteRenderer>();
@@ -37,7 +40,7 @@ public class Player : MonoBehaviour
         Init();
     }
 
-    private void Update()
+    protected void Update()
     {
         switch (m_State)
         {

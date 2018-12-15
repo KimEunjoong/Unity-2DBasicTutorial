@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class Stick : MonoBehaviour 
 {
-	#region Properties
-	[SerializeField]
+    public enum StickState
+    {
+        Grounded = 0,
+        Growing,
+        Falling,
+        Landed
+    }
+
+    #region Properties
+    [SerializeField]
 	private float m_Height = 0;	
 	[SerializeField]
 	private float m_GrowSpeed = 0.1f;
@@ -13,18 +21,9 @@ public class Stick : MonoBehaviour
     private float m_FallSpeed = 1f;
     private Transform m_Transform;
     private Rigidbody2D m_Rigidbody;
-
-    public Player m_Player = null;
-	#endregion
-
-    public enum StickState
-    {
-        Grounded = 0,
-        Growing,
-        Falling        
-    }
-
+    
     public StickState m_State;
+    #endregion
 
     #region MonoBehaviour
     void Awake()
@@ -49,6 +48,11 @@ public class Stick : MonoBehaviour
             case StickState.Falling:
                 FallRight();
                 break;
+            case StickState.Landed:
+                {
+                    Player.instance.m_State = PlayerState.Move;
+                }
+                break;
             default:
                 break;
         }
@@ -64,6 +68,7 @@ public class Stick : MonoBehaviour
         if (collision.transform.tag.Equals("Tile") == true)
         {
             m_State = StickState.Grounded;
+            //m_State = StickState.Landed;
         }
     }
     #endregion
