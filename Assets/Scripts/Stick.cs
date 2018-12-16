@@ -38,14 +38,19 @@ public class Stick : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (m_ID == m_CurrentTileID)
+        {
+            return;
+        }
+
         switch (m_State)
         {
-            case State.Grounded:
-                ProcessMouseInput();
+            case State.Grounded:                
+                ProcessMouseInput();             
                 break;
-            case State.Growing:
+            case State.Growing:                
                 ProcessMouseInput();
-                GrowUp();
+                GrowUp();                
                 break;
             case State.Falling:
                 FallRight();
