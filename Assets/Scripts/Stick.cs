@@ -17,7 +17,7 @@ public class Stick : MonoBehaviour
     [SerializeField]
 	private float m_Height = 0;	
 	[SerializeField]
-	private float m_GrowSpeed = 10f;
+	private float m_GrowSpeed = 30f;
     [SerializeField]
     private float m_FallSpeed = 100f;
     private Transform m_Transform;
