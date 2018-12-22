@@ -38,10 +38,10 @@ public class Stick : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (m_ID == m_CurrentTileID)
-        {
-            return;
-        }
+        //if (m_ID == m_CurrentTileID)
+        //{
+        //    return;
+        //}
 
         switch (m_State)
         {
